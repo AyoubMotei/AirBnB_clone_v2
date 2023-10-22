@@ -1,24 +1,14 @@
 #!/usr/bin/python3
-"""This module defines a class called City
-that inherits from BaseModel and represents a city"""
-
+""" City Module for HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-import os
-
-
-env_value = os.environ.get("HBNB_TYPE_STORAGE")
 
 
 class City(BaseModel, Base):
-    """A class that inherits from BaseModel and represents a city"""
+    """ The city class, contains state ID and name """
+    __tablename__ = 'cities'
 
-    __tablename__ = "cities"
-    if env_value == "db":
-        name = Column(String(128), nullable=False)
-        state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
-        places = relationship("Place", backref='cities', cascade="all, delete")
-    else:
-        name: str = ""
-        state_id: str = ""
+    name = Column(String(128), nullable=False)
+    state_id = Column(String(60), ForeignKey('states.id'), nullable=False)
+    places = relationship('Place', cascade='all, delete', backref='cities')

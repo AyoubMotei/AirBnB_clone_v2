@@ -1,23 +1,11 @@
 #!/usr/bin/python3
-"""This module defines a class called Amenity
-that handle all Amenity instances"""
-
+""" State Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
-from models.place import Place, place_amenity
-import os
+from sqlalchemy import Column, String
 
 
-env_value = os.environ.get("HBNB_TYPE_STORAGE")
+class Amenity(BaseModel, Base):
+    '''The class for Amenity'''
+    __tablename__ = 'amenities'
 
-
-class Amenity(BaseModel):
-    """A class that inherits from BaseModel and represents an amenity"""
-
-    __tablename__ = "amenities"
-    if env_value == "db":
-        name = Column(String(128), nullable=False)
-        place_amenities = relationship("Place", secondary=place_amenity)
-    else:
-        name: str = ""
+    name = Column(String(128), nullable=False)

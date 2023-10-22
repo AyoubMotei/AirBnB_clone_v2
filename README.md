@@ -1,52 +1,76 @@
+# 0x02. AirBnB clone v2
+  - MySQL
+    > *Group project* *Python* *OOP* *Back-end* *SQL* *MySQL* *ORM* *SQLAlchemy*
+  - Web Framework
+    > *Python* *Back-end* *Webserver* *Flask*
 
-# AirBnB clone
+## Usage
+- First clone this repository.
 
-This project is a copy of the AirBnB website.
-
-## Authors
-
-- [@AplusJS](https://github.com/aplusJsDev)
-
-
-- [@AyoubMotei](https://github.com/AyoubMotei)
-## Steps
-
-### 1. The console
-- Create a data model
-
-- manage (create, update, destroy, etc) objects via a console / command interpreter
-
-- store and persist objects to a file (JSON file)
-
-The first piece is to manipulate a powerful storage system. This storage engine will give us an abstraction between “My object” and “How they are stored and persisted”. This means: from your console code (the command interpreter itself) and from the front-end and RestAPI you will build later, you won’t have to pay attention (take care) of how your objects are stored.
-
-This abstraction will also allow you to change the type of storage easily without updating all of your codebase.
-
-The console will be a tool to validate this storage engine
-
-<img alt="step1 screenshot" src="./images/step1.jpg" />
-
-#### Run The console Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/aplusJsDev/AirBnB_clone.git
+- To run it:
+  - Using `DBStorage`, Locate the "console.py" file and run it as follows:
+  ```
+  $ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+  ```
+  - Using `FileStorage`, Locate the "console.py" file and run it as follows:
+  ```
+  $ ./console.py
+  ```
+- When this command is run the following prompt should appear:
 ```
-
-Go to the project directory
-
-```bash
-  cd AirBnB_clone
+(hbnb)
 ```
+- This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
 
-Then Run:
+## Supported classes:
+* BaseModel
+* User
+* State
+* City
+* Amenity
+* Place
+* Review
 
-```bash
-  ./console.py
-```
-#### Usage/Execution
+## Commands:
+* create - create an object
+* show - show an object (based on id)
+* destroy - destroy an object
+* all - show all objects, of one type or all types
+* quit/EOF - quit the console
+* help - see descriptions of commands
 
-<img alt="execution1 example" src="./images/air_console1.jpg">
+  #### Create
+  `create <class name>`
+  Ex:
+  `create BaseModel`
 
-<img alt="execution1 example" src="./images/air_console2.jpg">
+  #### Show
+  `show <class name> <object id>`
+  Ex:
+  `show User my_id`
+
+  #### Destroy
+  `destroy <class name> <object id>`
+  Ex:
+  `destroy Place my_place_id`
+
+  #### All
+  `all` or `all <class name>`
+  Ex:
+  `all` or `all State`
+
+  #### Quit
+  `quit` or `EOF`
+
+  #### Help
+  `help` or `help <command>`
+  Ex:
+  `help` or `help quit`
+
+## Alternate Syntax
+Additionally the console supports 
+- ##### `<class name>.<command>(<parameters>)` syntax.
+  **Ex:** `City.show(my_city_id)`
+- #### Named Parameters
+  ##### `<command> <class name> (<named_parameters>)` syntax.
+  **Ex:** `create Amenity name="WiFi"`
